@@ -31,10 +31,25 @@ export default async function HomePage() {
 
       {/* ============== Hero ============== */}
       <section className="relative overflow-hidden">
+        {/* 動画背景 */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-ocean-50 via-sand-50 to-white" />
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/hero/hero.mp4"
+            poster="/hero/hero-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
+          {/* 文字の可読性確保のためのグラデーションオーバーレイ */}
+          <div className="absolute inset-0 bg-gradient-to-b from-ocean-900/55 via-ocean-900/40 to-sand-50/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ocean-900/30 via-transparent to-ocean-900/30" />
+          {/* 下端の波 */}
           <svg
-            className="absolute bottom-0 left-0 w-full text-ocean-100"
+            className="absolute bottom-0 left-0 w-full text-sand-50"
             viewBox="0 0 1440 80" preserveAspectRatio="none"
           >
             <path
@@ -44,18 +59,18 @@ export default async function HomePage() {
           </svg>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 pt-14 pb-24 text-center">
-          <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coral-50 text-coral-600 text-xs font-medium mb-5">
+        <div className="max-w-6xl mx-auto px-4 pt-20 pb-32 md:pt-24 md:pb-36 text-center">
+          <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 backdrop-blur text-coral-600 text-xs font-medium mb-5 shadow-sm">
             <Sparkles size={14} /> AIが出品も検索も全部サポート
           </p>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-ocean-900 leading-tight">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
             海まで、もう一歩。
             <br />
-            <span className="text-coral-500">中古船</span>を、もっと自由に。
+            <span className="text-coral-300">中古船</span>を、もっと自由に。
           </h1>
-          <p className="mt-5 text-ocean-700 max-w-xl mx-auto">
+          <p className="mt-5 text-white/95 max-w-xl mx-auto text-sm md:text-base drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             プレジャーボート・漁船・ヨットの個人売買マーケット。
-            <br />
+            <br className="hidden sm:block" />
             AIが面倒な登録も、買い手探しも、契約書もまるっとサポート。
           </p>
 
@@ -63,7 +78,7 @@ export default async function HomePage() {
           <form
             action="/boats"
             method="GET"
-            className="mt-8 max-w-2xl mx-auto flex bg-white rounded-full shadow-[0_8px_24px_-12px_rgba(14,58,92,0.25)] border border-ocean-100"
+            className="mt-8 max-w-2xl mx-auto flex bg-white rounded-full shadow-[0_12px_36px_-8px_rgba(14,58,92,0.45)] border border-white"
           >
             <div className="flex-1 flex items-center pl-5">
               <Search className="text-ocean-500" size={18} />
@@ -82,13 +97,13 @@ export default async function HomePage() {
             </button>
           </form>
 
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-ocean-700">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-white/95">
             <span>人気:</span>
             {['ヤマハ', 'トヨタ', '20ft以下', '500万円以下', '福岡', '沖縄'].map((tag) => (
               <Link
                 key={tag}
                 href={`/boats?q=${encodeURIComponent(tag)}`}
-                className="px-3 py-1 rounded-full bg-white border border-ocean-100 hover:border-coral-300"
+                className="px-3 py-1 rounded-full bg-white/95 backdrop-blur text-ocean-800 border border-white/40 hover:bg-coral-50 hover:border-coral-300 transition-colors"
               >
                 {tag}
               </Link>
