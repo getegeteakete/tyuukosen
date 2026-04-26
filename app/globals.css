@@ -71,4 +71,8 @@ a { color: inherit; text-decoration: none; }
   .fab-pulse {
     animation: none;
   }
+  /* ホバー拡大も無効化 */
+  .group:hover > .group-hover\:scale-\[1\.6\] {
+    transform: none !important;
+  }
 }

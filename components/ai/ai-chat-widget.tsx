@@ -92,7 +92,12 @@ export function AiChatWidget() {
           className="fixed z-40 bottom-20 right-4 md:bottom-5 md:right-5 group"
         >
           <span className="absolute -inset-1 rounded-2xl bg-coral-500/40 fab-pulse" aria-hidden="true" />
-          <span className="relative block w-[68px] h-[92px] rounded-2xl overflow-hidden shadow-xl ring-2 ring-white">
+          <span
+            className="relative block w-[68px] h-[92px] rounded-2xl overflow-hidden shadow-xl ring-2 ring-white origin-bottom-right
+                       transition-transform duration-300 ease-out
+                       group-hover:scale-[1.6] group-hover:shadow-2xl group-hover:ring-coral-300
+                       group-focus-visible:scale-[1.6]"
+          >
             <video
               className="absolute inset-0 w-full h-full object-cover"
               src="/ai/receptionist.mp4"
@@ -106,6 +111,14 @@ export function AiChatWidget() {
                 <Sparkles size={9} className="text-white" /> AI
               </span>
             </span>
+          </span>
+          {/* ホバー時のラベル（PCのみ） */}
+          <span
+            className="hidden md:block absolute right-full top-1/2 -translate-y-1/2 mr-3
+                       opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                       whitespace-nowrap px-3 py-1.5 rounded-full bg-ocean-900 text-white text-xs font-medium shadow-lg pointer-events-none"
+          >
+            AIアシスタントに相談 →
           </span>
         </button>
       )}
