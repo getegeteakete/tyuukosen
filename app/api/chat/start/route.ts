@@ -28,8 +28,8 @@ export async function POST(req: Request) {
     .single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  // 出品者の inquiry_count を加算
-  await supabase.rpc('increment_inquiry', { boat_id_in: boat_id }).catch(() => {});
+  // 出品者の inquiry_count を加算（失敗しても続行）
+  try { await supabase.rpc('increment_inquiry', { boat_id_in: boat_id }); } catch {}
 
   return NextResponse.json({ room_id: room.id });
 }

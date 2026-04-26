@@ -42,8 +42,8 @@ export default async function BoatDetailPage({ params }: { params: Promise<{ id:
     .eq('user_id', boat.seller_id)
     .single();
 
-  // 閲覧カウント（fire-and-forget）
-  await supabase.rpc('increment_view', { boat_id_in: id }).catch(() => {});
+  // 閲覧カウント（fire-and-forget・失敗しても続行）
+  try { await supabase.rpc('increment_view', { boat_id_in: id }); } catch {}
 
   const images: Array<{ url: string; caption?: string }> =
     Array.isArray(boat.images) && boat.images.length > 0
