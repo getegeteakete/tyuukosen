@@ -59,7 +59,7 @@ JSON形式で返答:
 
   const text = resp.content
     .filter((b) => b.type === 'text')
-    .map((b) => (b as Anthropic.TextBlock).text)
+    .map((b) => (b as { type: string; text: string }).text)
     .join('\n');
 
   let article: { title: string; content_md: string; meta_description: string; keywords: string[] };

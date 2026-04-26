@@ -58,7 +58,7 @@ JSON形式: {"twitter":"...","facebook":"..."}`,
 
     const text = resp.content
       .filter((b) => b.type === 'text')
-      .map((b) => (b as Anthropic.TextBlock).text)
+      .map((b) => (b as { type: string; text: string }).text)
       .join('\n');
 
     let copy: { twitter: string; facebook: string };

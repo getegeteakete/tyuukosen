@@ -66,7 +66,7 @@ ${JSON.stringify(top, null, 2)}
 
   const text = resp.content
     .filter((b) => b.type === 'text')
-    .map((b) => (b as Anthropic.TextBlock).text)
+    .map((b) => (b as { type: string; text: string }).text)
     .join('\n');
 
   let scored: Array<{ id: string; score: number; reason: string }> = [];

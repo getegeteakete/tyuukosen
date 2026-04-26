@@ -57,7 +57,7 @@ JSON形式: {"subject":"...","html":"..."}`;
       });
       const text = resp.content
         .filter((b) => b.type === 'text')
-        .map((b) => (b as Anthropic.TextBlock).text)
+        .map((b) => (b as { type: string; text: string }).text)
         .join('\n');
       const mail = JSON.parse(text.replace(/```json|```/g, '').trim()) as {
         subject: string;

@@ -76,7 +76,7 @@ ${boat.ai_generated_article ?? boat.description ?? '（なし）'}
     });
     const newContent = resp.content
       .filter((b) => b.type === 'text')
-      .map((b) => (b as Anthropic.TextBlock).text)
+      .map((b) => (b as { type: string; text: string }).text)
       .join('\n');
 
     // 履歴と最新版を保存

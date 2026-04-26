@@ -80,7 +80,7 @@ export async function orchestrate(input: OrchestratorInput): Promise<Orchestrato
 
   try {
     // 1) 司令塔で意図分類
-    const messages: Anthropic.MessageParam[] = [];
+    const messages: Array<{ role: 'user' | 'assistant'; content: string }> = [];
     if (input.history) {
       for (const h of input.history.slice(-6)) {
         messages.push({ role: h.role, content: h.content });
@@ -97,7 +97,7 @@ export async function orchestrate(input: OrchestratorInput): Promise<Orchestrato
 
     const text = resp.content
       .filter((b) => b.type === 'text')
-      .map((b) => (b as Anthropic.TextBlock).text)
+      .map((b) => (b as { type: string; text: string }).text)
       .join('\n');
 
     let parsed: { intent: AgentKind; extracted: any; user_reply: string };
