@@ -7,11 +7,10 @@
  * - メタディスクリプション・キーワード
  * を生成する。
  */
-import Anthropic from '@anthropic-ai/sdk';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAnthropic } from '@/lib/ai/clients';
 import { slugify } from '@/lib/utils';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 export async function runArticleWriterAgent(input: {
   boatId: string;
@@ -51,7 +50,7 @@ export async function runArticleWriterAgent(input: {
 JSON形式で返答:
 {"title":"...", "content_md":"...", "meta_description":"120字以内", "keywords":["...","..."]}`;
 
-  const resp = await anthropic.messages.create({
+  const resp = await getAnthropic().messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 3000,
     messages: [{ role: 'user', content: prompt }],

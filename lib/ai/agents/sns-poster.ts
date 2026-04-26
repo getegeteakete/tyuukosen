@@ -7,10 +7,9 @@
  * 実装注: Twitter API v2のOAuth1.0aフロー、Meta Graph APIなど
  *        本実装は概念実装。本番ではバウンス・エラー処理・レート制限を強化。
  */
-import Anthropic from '@anthropic-ai/sdk';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAnthropic } from '@/lib/ai/clients';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 interface PostOptions {
   limit?: number;       // 1回のCronで処理する件数
@@ -38,7 +37,7 @@ export async function runSnsPosterAgent(opts: PostOptions = {}) {
 
   for (const boat of boats) {
     // 投稿文をAI生成
-    const resp = await anthropic.messages.create({
+    const resp = await getAnthropic().messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 600,
       messages: [

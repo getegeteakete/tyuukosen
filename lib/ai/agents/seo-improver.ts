@@ -6,10 +6,9 @@
  * - 滞在時間が短いページにCTAを追加
  * - 検索流入キーワードからメタディスクリプションを再生成
  */
-import Anthropic from '@anthropic-ai/sdk';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAnthropic } from '@/lib/ai/clients';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 export async function runSeoImproverAgent() {
   const supabase = createServiceClient();
@@ -69,7 +68,7 @@ ${boat.ai_generated_article ?? boat.description ?? '（なし）'}
 
 改善版を本文のみ（マークダウン可）で返してください。前置き不要。`;
 
-    const resp = await anthropic.messages.create({
+    const resp = await getAnthropic().messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 2500,
       messages: [{ role: 'user', content: prompt }],

@@ -9,13 +9,12 @@
  * - 専門エージェント：用途別に分離（疎結合）
  * - 各エージェントは ai_jobs テーブルにジョブを残し、再現可能
  */
-import Anthropic from '@anthropic-ai/sdk';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAnthropic } from '@/lib/ai/clients';
 import { runRegistrarAgent } from '@/lib/ai/agents/registrar';
 import { runArticleWriterAgent } from '@/lib/ai/agents/article-writer';
 import { runMatcherAgent } from '@/lib/ai/agents/matcher';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // 司令塔が判定可能なエージェント種別
 export type AgentKind =
@@ -88,7 +87,7 @@ export async function orchestrate(input: OrchestratorInput): Promise<Orchestrato
     }
     messages.push({ role: 'user', content: input.message });
 
-    const resp = await anthropic.messages.create({
+    const resp = await getAnthropic().messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 1024,
       system: SYSTEM_PROMPT,

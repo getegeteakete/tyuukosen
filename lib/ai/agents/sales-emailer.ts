@@ -10,12 +10,9 @@
  * - 法令（特商法・特電法）順守。同意なき大量送信は違法リスク。
  *   実運用前に法務確認のこと。
  */
-import Anthropic from '@anthropic-ai/sdk';
-import { Resend } from 'resend';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAnthropic, getResend } from '@/lib/ai/clients';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function runSalesEmailerAgent(opts: { batchSize?: number } = {}) {
   const supabase = createServiceClient();
@@ -50,7 +47,7 @@ export async function runSalesEmailerAgent(opts: { batchSize?: number } = {}) {
 JSON形式: {"subject":"...","html":"..."}`;
 
     try {
-      const resp = await anthropic.messages.create({
+      const resp = await getAnthropic().messages.create({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1500,
         messages: [{ role: 'user', content: prompt }],
@@ -66,7 +63,7 @@ JSON形式: {"subject":"...","html":"..."}`;
 
       const html = mail.html.replaceAll('{{target_id}}', t.id);
 
-      const sent = await resend.emails.send({
+      const sent = await getResend().emails.send({
         from: process.env.MAIL_FROM ?? 'no-reply@example.com',
         to: t.email,
         subject: mail.subject,

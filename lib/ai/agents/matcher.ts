@@ -4,10 +4,9 @@
  * 1. 条件で絞り込み（SQL）
  * 2. 上位候補にAIで詳細スコアリング（0-100点）し、推薦理由も生成
  */
-import Anthropic from '@anthropic-ai/sdk';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAnthropic } from '@/lib/ai/clients';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 interface Criteria {
   budget_min?: number;
@@ -58,7 +57,7 @@ ${JSON.stringify(top, null, 2)}
 各候補について「マッチ度（0-100）」と「3行以内の推薦理由」をJSONで返してください。
 形式: [{"id":"...","score":85,"reason":"..."}]`;
 
-  const resp = await anthropic.messages.create({
+  const resp = await getAnthropic().messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 1500,
     messages: [{ role: 'user', content: prompt }],
