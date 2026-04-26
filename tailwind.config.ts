@@ -42,8 +42,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['"Noto Sans JP"', 'system-ui', 'sans-serif'],
-        display: ['"Shippori Mincho"', '"Noto Serif JP"', 'serif'],
+        sans: ['Meiryo', 'メイリオ', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', '游ゴシック', 'sans-serif'],
+        display: ['Meiryo', 'メイリオ', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', '游ゴシック', 'sans-serif'],
       },
       borderRadius: {
         'xl2': '14px',

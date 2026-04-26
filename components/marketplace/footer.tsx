@@ -37,10 +37,8 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-sm">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-                <path d="M4 22h24l-3 5H7l-3-5z" fill="#0E3A5C" />
-                <path d="M16 4l8 14H8L16 4z" fill="#F25C54" />
-              </svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="" width="28" height="28" className="w-7 h-7" />
               <h3 className="font-display font-bold text-ocean-900">
                 イイフネ<span className="text-coral-500">🚢</span>.com
               </h3>

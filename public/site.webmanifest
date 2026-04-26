@@ -1,0 +1,15 @@
+{
+  "name": "イイフネ🚢.com - 中古船売買AIサポートサイト",
+  "short_name": "イイフネ.com",
+  "description": "中古船売買AIサポートサイト。AIが出品も検索も契約も全部サポート。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBFAF7",
+  "theme_color": "#0E3A5C",
+  "lang": "ja",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

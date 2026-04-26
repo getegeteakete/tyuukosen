@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,13 +8,26 @@
   --ink-2: #234560;
   --accent: #F25C54;
   --line: rgba(14, 58, 92, 0.12);
+
+  /* メイリオ系のシステムフォントスタック - 高速読込 + 全環境で見やすい */
+  --font-jp: 'Meiryo', 'メイリオ', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', '游ゴシック', 'YuGothic', 'MS PGothic', sans-serif;
 }
 
 html, body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Noto Sans JP', system-ui, sans-serif;
+  font-family: var(--font-jp);
+  font-feature-settings: 'palt';   /* 日本語の詰め設定で読みやすく */
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+}
+
+/* 見出しはメイリオの太字で */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-jp);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 /* リンクの下線抑制 */
@@ -56,7 +67,6 @@ a { color: inherit; text-decoration: none; }
 .fab-pulse { animation: pulse-ring 2s infinite; }
 
 /* モーション減らす設定の人にはFABアニメ停止 */
-/* 動画背景はポスター画像がフォールバックとして残るので display:none にしない */
 @media (prefers-reduced-motion: reduce) {
   .fab-pulse {
     animation: none;

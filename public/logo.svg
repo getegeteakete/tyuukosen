@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- 太陽（背景の丸） -->
+  <circle cx="48" cy="14" r="6" fill="#FFB562" opacity="0.85"/>
+
+  <!-- 雲 -->
+  <ellipse cx="14" cy="13" rx="6" ry="3" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="20" cy="11" rx="4" ry="2.5" fill="#ffffff" opacity="0.9"/>
+
+  <!-- 後ろの帆（白） -->
+  <path d="M28 12 L28 28 L40 28 Z" fill="#ffffff" stroke="#0E3A5C" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- 前の帆（コーラル） -->
+  <path d="M28 12 L28 28 L18 28 Z" fill="#F25C54" stroke="#0E3A5C" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- マスト -->
+  <line x1="28" y1="10" x2="28" y2="34" stroke="#0E3A5C" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- 船体（赤い船腹） -->
+  <path d="M8 34 L56 34 L50 44 L14 44 Z" fill="#F25C54" stroke="#0E3A5C" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- 船体の白いライン（窓） -->
+  <line x1="14" y1="38" x2="50" y2="38" stroke="#ffffff" stroke-width="1.2" opacity="0.7"/>
+
+  <!-- 波（前面） -->
+  <path d="M2 50 Q10 46 18 50 T34 50 T50 50 T62 50" stroke="#0E3A5C" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M4 56 Q12 52 20 56 T36 56 T52 56 T62 56" stroke="#0E3A5C" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+</svg>

@@ -13,6 +13,18 @@ export const metadata: Metadata = {
   },
   description:
     '中古船売買AIサポートサイト「イイフネ🚢.com」。プレジャーボート・漁船・ヨットの個人売買マーケット。AI登録支援、電子契約、ZOOM見学に対応。買い手登録は無料。',
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     type: 'website',
     locale: 'ja_JP',

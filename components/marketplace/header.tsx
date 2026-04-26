@@ -47,11 +47,9 @@ export function Header() {
         <div className="max-w-6xl mx-auto px-4 h-14 md:h-16 flex items-center gap-3 md:gap-6">
           {/* ロゴ */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-              <path d="M4 22h24l-3 5H7l-3-5z" fill="#0E3A5C" />
-              <path d="M16 4l8 14H8L16 4z" fill="#F25C54" />
-            </svg>
-            <span className="font-display font-bold text-base md:text-lg text-ocean-900 leading-none">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.svg" alt="" width="32" height="32" className="w-8 h-8" />
+            <span className="font-display font-bold text-base md:text-lg text-ocean-900 leading-none tracking-tight">
               イイフネ<span className="text-coral-500">🚢</span>.com
             </span>
           </Link>
