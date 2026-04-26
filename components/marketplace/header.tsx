@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: '/parts', label: 'パーツ', icon: Wrench },
   { href: '/wanted', label: '探しています', icon: MessageCircle },
   { href: '/pricing', label: '出品プラン', icon: Tag },
+  { href: '/line', label: '公式LINE', icon: MessageCircle, accent: true },
 ];
 
 const MORE_ITEMS = [
@@ -56,7 +57,7 @@ export function Header() {
 
           {/* PC: 横並びナビ */}
           <nav className="hidden md:flex items-center gap-5 text-sm text-ocean-800 ml-2">
-            {NAV_ITEMS.map(({ href, label }) => (
+            {NAV_ITEMS.filter(n => !n.accent).map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
@@ -156,8 +157,21 @@ export function Header() {
             <p className="px-5 pt-3 pb-1 text-[10px] font-medium text-ocean-700 uppercase tracking-wider">
               探す・売る
             </p>
-            {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
+            {NAV_ITEMS.map(({ href, label, icon: Icon, accent }) => {
               const active = pathname?.startsWith(href);
+              if (accent) {
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="flex items-center gap-3 px-5 py-3 text-sm transition-colors bg-[#06C755]/10 text-[#06C755] font-medium hover:bg-[#06C755]/15"
+                  >
+                    <Icon size={18} className="text-[#06C755]" />
+                    {label}
+                    <span className="ml-auto text-[10px] bg-[#06C755] text-white px-1.5 py-0.5 rounded-full">登録無料</span>
+                  </Link>
+                );
+              }
               return (
                 <Link
                   key={href}

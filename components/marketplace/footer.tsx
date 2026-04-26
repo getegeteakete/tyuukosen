@@ -23,6 +23,7 @@ const SECTIONS = [
   {
     title: 'サポート',
     links: [
+      { href: '/line', label: '公式LINE' },
       { href: '/help', label: 'ヘルプセンター' },
       { href: '/help/subsidy', label: '補助金サポート' },
       { href: '/help/contract', label: '電子契約の使い方' },

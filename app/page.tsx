@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Search, Anchor, Wrench, FileSignature, MessageCircle, Sparkles, AlertCircle, Shield, Star, ChevronRight, Zap, TrendingUp } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { BoatCard } from '@/components/marketplace/boat-card';
+import { LineCtaHero } from '@/components/marketplace/line-cta';
 
 export const revalidate = 300;
 
@@ -156,6 +157,11 @@ export default async function HomePage() {
           <StepCard n="02" title="勝手にSNS&記事化" body="出品後、AIが紹介文・SEO記事・SNS投稿を自動作成。寝てる間も宣伝されます。" icon={<TrendingUp />} />
           <StepCard n="03" title="商談はサイト内完結" body="匿名チャット → ZOOM見学 → 電子契約まで一気通貫。スマホで全部できる。" icon={<FileSignature />} />
         </div>
+      </section>
+
+      {/* ============== LINE誘導 ============== */}
+      <section className="max-w-6xl mx-auto px-4 mt-12 md:mt-16">
+        <LineCtaHero />
       </section>
 
       {/* ============== 機能ハイライト ============== */}

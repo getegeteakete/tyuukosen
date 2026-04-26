@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { BoatCard } from '@/components/marketplace/boat-card';
+import { LineCtaCompact } from '@/components/marketplace/line-cta';
 import { Search } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -83,6 +84,11 @@ export default async function BoatsPage({
         <input name="max" defaultValue={sp.max} placeholder="¥上限" type="number" className="w-24 px-3 py-2 rounded-md border border-ocean-200 text-sm" />
         <button className="px-4 py-2 rounded-md bg-coral-500 text-white text-sm font-medium">絞り込み</button>
       </form>
+
+      {/* LINE誘導 */}
+      <div className="mb-5">
+        <LineCtaCompact />
+      </div>
 
       <p className="text-xs text-ocean-700 mb-4">{total.toLocaleString()}件</p>
 
