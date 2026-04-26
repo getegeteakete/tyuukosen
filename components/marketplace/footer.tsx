@@ -1,44 +1,67 @@
 import Link from 'next/link';
 
+const SECTIONS = [
+  {
+    title: '使う',
+    links: [
+      { href: '/boats', label: '中古船を探す' },
+      { href: '/parts', label: 'パーツ' },
+      { href: '/wanted', label: '探しています投稿' },
+      { href: '/pricing', label: '出品プラン' },
+    ],
+  },
+  {
+    title: '会社',
+    links: [
+      { href: '/about', label: '運営について' },
+      { href: '/contact', label: 'お問い合わせ' },
+      { href: '/legal/terms', label: '利用規約' },
+      { href: '/legal/privacy', label: 'プライバシー' },
+      { href: '/legal/tokutei', label: '特定商取引法' },
+    ],
+  },
+  {
+    title: 'サポート',
+    links: [
+      { href: '/help', label: 'ヘルプセンター' },
+      { href: '/help/subsidy', label: '補助金サポート' },
+      { href: '/help/contract', label: '電子契約の使い方' },
+    ],
+  },
+];
+
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-ocean-100 bg-white">
-      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
-        <div>
-          <h3 className="font-display font-bold text-ocean-900 mb-3">中古船マーケット</h3>
-          <p className="text-ocean-700 text-xs leading-relaxed">
-            AIアシストで簡単に中古船・パーツを売買できる、海好きのためのマーケットプレイスです。
-          </p>
-        </div>
-        <div>
-          <h4 className="font-medium text-ocean-900 mb-3">使う</h4>
-          <ul className="space-y-2 text-ocean-700">
-            <li><Link href="/boats">中古船を探す</Link></li>
-            <li><Link href="/parts">パーツ</Link></li>
-            <li><Link href="/wanted">探しています投稿</Link></li>
-            <li><Link href="/pricing">出品プラン</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-medium text-ocean-900 mb-3">会社</h4>
-          <ul className="space-y-2 text-ocean-700">
-            <li><Link href="/about">運営について</Link></li>
-            <li><Link href="/contact">お問い合わせ</Link></li>
-            <li><Link href="/legal/terms">利用規約</Link></li>
-            <li><Link href="/legal/privacy">プライバシー</Link></li>
-            <li><Link href="/legal/tokutei">特定商取引法</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-medium text-ocean-900 mb-3">サポート</h4>
-          <ul className="space-y-2 text-ocean-700">
-            <li><Link href="/help">ヘルプセンター</Link></li>
-            <li><Link href="/help/subsidy">補助金サポート</Link></li>
-            <li><Link href="/help/contract">電子契約の使い方</Link></li>
-          </ul>
+    <footer className="mt-12 md:mt-20 border-t border-ocean-100 bg-white">
+      <div className="max-w-6xl mx-auto px-4 py-8 md:py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-sm">
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2 mb-3">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+                <path d="M4 22h24l-3 5H7l-3-5z" fill="#0E3A5C" />
+                <path d="M16 4l8 14H8L16 4z" fill="#F25C54" />
+              </svg>
+              <h3 className="font-display font-bold text-ocean-900">中古船マーケット</h3>
+            </div>
+            <p className="text-ocean-700 text-xs leading-relaxed">
+              AIアシストで簡単に中古船・パーツを売買できる、海好きのためのマーケットプレイス。
+            </p>
+          </div>
+          {SECTIONS.map((sec) => (
+            <div key={sec.title}>
+              <h4 className="font-medium text-ocean-900 mb-3 text-xs md:text-sm">{sec.title}</h4>
+              <ul className="space-y-2 text-ocean-700 text-xs md:text-sm">
+                {sec.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="hover:text-coral-500 transition-colors">{l.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="border-t border-ocean-100 py-4 text-center text-xs text-ocean-700">
+      <div className="border-t border-ocean-100 py-4 text-center text-[11px] md:text-xs text-ocean-700">
         © {new Date().getFullYear()} 中古船マーケット
       </div>
     </footer>

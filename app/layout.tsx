@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/marketplace/header';
 import { Footer } from '@/components/marketplace/footer';
 import { AiChatWidget } from '@/components/ai/ai-chat-widget';
+import { MobileBottomNav } from '@/components/marketplace/mobile-bottom-nav';
 
 export const metadata: Metadata = {
   title: {
@@ -19,19 +20,26 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#0E3A5C',
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
       <body className="min-h-screen flex flex-col">
-        {/* UnivaPay Widget */}
         <Script
           src="https://widget.univapay.com/client/checkout.js"
           strategy="afterInteractive"
         />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-16 md:pb-0">{children}</main>
         <Footer />
         <AiChatWidget />
+        <MobileBottomNav />
       </body>
     </html>
   );

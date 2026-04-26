@@ -89,14 +89,14 @@ export function AiChatWidget() {
         <button
           onClick={() => setOpen(true)}
           aria-label="AIアシスタントを開く"
-          className="fixed z-40 bottom-5 right-5 w-14 h-14 rounded-full bg-coral-500 hover:bg-coral-600 text-white shadow-lg fab-pulse flex items-center justify-center"
+          className="fixed z-40 bottom-20 right-4 md:bottom-5 md:right-5 w-14 h-14 rounded-full bg-coral-500 hover:bg-coral-600 text-white shadow-lg fab-pulse flex items-center justify-center"
         >
           <Sparkles size={22} />
         </button>
       )}
 
       {open && (
-        <div className="fixed z-40 bottom-5 right-5 w-[min(380px,calc(100vw-2rem))] h-[min(560px,calc(100vh-3rem))] bg-white rounded-2xl shadow-2xl border border-ocean-100 flex flex-col overflow-hidden">
+        <div className="fixed z-40 bottom-4 right-4 md:bottom-5 md:right-5 w-[calc(100vw-2rem)] max-w-[380px] h-[min(560px,calc(100vh-6rem))] bg-white rounded-2xl shadow-2xl border border-ocean-100 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-ocean-900 text-white">
             <div className="flex items-center gap-2">
