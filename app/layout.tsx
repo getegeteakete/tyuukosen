@@ -5,6 +5,7 @@ import { Header } from '@/components/marketplace/header';
 import { Footer } from '@/components/marketplace/footer';
 import { AiChatWidget } from '@/components/ai/ai-chat-widget';
 import { MobileBottomNav } from '@/components/marketplace/mobile-bottom-nav';
+import { ScrollToTop } from '@/components/marketplace/scroll-to-top';
 
 export const metadata: Metadata = {
   title: {
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 pb-16 md:pb-0">{children}</main>
         <Footer />
         <AiChatWidget />
+        <ScrollToTop />
         <MobileBottomNav />
       </body>
     </html>
