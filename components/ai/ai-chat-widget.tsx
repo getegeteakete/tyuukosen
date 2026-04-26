@@ -84,14 +84,29 @@ export function AiChatWidget() {
 
   return (
     <>
-      {/* FAB */}
+      {/* FAB - 動画ボタン */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
           aria-label="AIアシスタントを開く"
-          className="fixed z-40 bottom-20 right-4 md:bottom-5 md:right-5 w-14 h-14 rounded-full bg-coral-500 hover:bg-coral-600 text-white shadow-lg fab-pulse flex items-center justify-center"
+          className="fixed z-40 bottom-20 right-4 md:bottom-5 md:right-5 group"
         >
-          <Sparkles size={22} />
+          <span className="absolute -inset-1 rounded-2xl bg-coral-500/40 fab-pulse" aria-hidden="true" />
+          <span className="relative block w-[68px] h-[92px] rounded-2xl overflow-hidden shadow-xl ring-2 ring-white">
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/ai/receptionist.mp4"
+              poster="/ai/receptionist-poster.jpg"
+              autoPlay muted loop playsInline preload="auto"
+              aria-hidden="true"
+            />
+            <span className="absolute inset-0 bg-gradient-to-t from-ocean-900/55 via-transparent to-transparent" />
+            <span className="absolute bottom-1 left-0 right-0 text-center">
+              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-coral-500 text-white text-[9px] font-bold leading-none shadow">
+                <Sparkles size={9} className="text-white" /> AI
+              </span>
+            </span>
+          </span>
         </button>
       )}
 

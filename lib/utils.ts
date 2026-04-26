@@ -6,7 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatYen(n: number | null | undefined): string {
-  if (n == null) return '—';
+  // 0円 / null / undefined はすべて ASK (応相談) として扱う
+  if (n == null || n === 0) return 'ASK';
   return `¥${n.toLocaleString('ja-JP')}`;
 }
 

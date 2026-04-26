@@ -138,7 +138,11 @@ export default async function BoatDetailPage({ params }: { params: Promise<{ id:
           <p className="font-display text-3xl font-bold text-coral-500 mt-1">
             {formatYen(boat.price)}
           </p>
-          {boat.negotiable && <p className="text-[11px] text-ocean-700 mt-0.5">価格相談可</p>}
+          {(!boat.price || boat.price === 0) ? (
+            <p className="text-[11px] text-ocean-700 mt-0.5">価格はお問い合わせください</p>
+          ) : boat.negotiable ? (
+            <p className="text-[11px] text-ocean-700 mt-0.5">価格相談可</p>
+          ) : null}
 
           {/* 出品者 */}
           <div className="mt-5 pt-5 border-t border-ocean-100">
