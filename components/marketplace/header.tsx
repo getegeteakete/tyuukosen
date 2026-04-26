@@ -52,7 +52,7 @@ export function Header() {
               <path d="M16 4l8 14H8L16 4z" fill="#F25C54" />
             </svg>
             <span className="font-display font-bold text-base md:text-lg text-ocean-900 leading-none">
-              中古船マーケット
+              イイフネ<span className="text-coral-500">🚢</span>.com
             </span>
           </Link>
 

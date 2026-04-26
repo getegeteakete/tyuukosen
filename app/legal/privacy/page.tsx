@@ -6,7 +6,7 @@ export default function PrivacyPage() {
       <h1 className="font-display text-3xl font-bold text-ocean-900 heading-wave mb-8">プライバシーポリシー</h1>
       <div className="space-y-5 text-ocean-800 leading-relaxed text-sm">
         <p>
-          中古船マーケット（以下「当サービス」）は、利用者の個人情報を以下のとおり取り扱います。
+          イイフネ🚢.com（以下「当サービス」）は、利用者の個人情報を以下のとおり取り扱います。
         </p>
 
         <h2 className="font-display text-xl font-bold text-ocean-900 mt-8">1. 取得する個人情報</h2>

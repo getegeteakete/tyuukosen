@@ -41,10 +41,12 @@ export function Footer() {
                 <path d="M4 22h24l-3 5H7l-3-5z" fill="#0E3A5C" />
                 <path d="M16 4l8 14H8L16 4z" fill="#F25C54" />
               </svg>
-              <h3 className="font-display font-bold text-ocean-900">中古船マーケット</h3>
+              <h3 className="font-display font-bold text-ocean-900">
+                イイフネ<span className="text-coral-500">🚢</span>.com
+              </h3>
             </div>
             <p className="text-ocean-700 text-xs leading-relaxed">
-              AIアシストで簡単に中古船・パーツを売買できる、海好きのためのマーケットプレイス。
+              中古船売買AIサポートサイト。AIアシストで簡単に中古船・パーツを売買できる、海好きのためのマーケットプレイス。
             </p>
           </div>
           {SECTIONS.map((sec) => (
@@ -62,7 +64,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-ocean-100 py-4 text-center text-[11px] md:text-xs text-ocean-700">
-        © {new Date().getFullYear()} 中古船マーケット
+        © {new Date().getFullYear()} イイフネ🚢.com - 中古船売買AIサポートサイト
       </div>
     </footer>
   );

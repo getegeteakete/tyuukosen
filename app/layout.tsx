@@ -8,15 +8,17 @@ import { MobileBottomNav } from '@/components/marketplace/mobile-bottom-nav';
 
 export const metadata: Metadata = {
   title: {
-    default: '中古船マーケット | AIで簡単・安心の中古船売買',
-    template: '%s | 中古船マーケット',
+    default: 'イイフネ🚢.com | 中古船売買AIサポートサイト',
+    template: '%s | イイフネ🚢.com',
   },
   description:
-    'プレジャーボート、漁船、ヨットの中古船売買マーケットプレイス。AI登録支援、電子契約、ZOOM見学に対応。掲載は無料、買い手登録も無料。',
+    '中古船売買AIサポートサイト「イイフネ🚢.com」。プレジャーボート・漁船・ヨットの個人売買マーケット。AI登録支援、電子契約、ZOOM見学に対応。買い手登録は無料。',
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
-    siteName: '中古船マーケット',
+    siteName: 'イイフネ🚢.com',
+    title: 'イイフネ🚢.com | 中古船売買AIサポートサイト',
+    description: 'AIが出品も検索も契約も全部サポート。掲載料だけのシンプル料金で、いいフネとの出会いを。',
   },
 };
 

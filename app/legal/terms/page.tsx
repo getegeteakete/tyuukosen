@@ -6,7 +6,7 @@ export default function TermsPage() {
       <h1 className="font-display text-3xl font-bold text-ocean-900 heading-wave mb-8">利用規約</h1>
       <div className="space-y-6 text-ocean-800 leading-relaxed text-sm">
         <p>
-          この利用規約（以下「本規約」といいます）は、中古船マーケット（以下「当サービス」といいます）が
+          この利用規約（以下「本規約」といいます）は、イイフネ🚢.com（以下「当サービス」といいます）が
           提供する中古船売買マーケットプレイスサービスの利用条件を定めるものです。
         </p>
 

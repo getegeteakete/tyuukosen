@@ -8,7 +8,7 @@ export default function TokuteiPage() {
       <table className="w-full text-sm">
         <tbody className="divide-y divide-ocean-100">
           {[
-            ['販売事業者', '中古船マーケット運営事務局'],
+            ['販売事業者', 'イイフネ🚢.com運営事務局'],
             ['代表者', '（運営者名）'],
             ['所在地', '（住所）※請求があれば遅滞なく開示'],
             ['電話番号', '（電話番号）※請求があれば遅滞なく開示'],

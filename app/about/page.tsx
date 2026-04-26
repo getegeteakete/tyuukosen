@@ -7,7 +7,7 @@ export default function AboutPage() {
 
       <section className="space-y-5 text-ocean-800 leading-relaxed">
         <p>
-          中古船マーケットは、プレジャーボート・漁船・ヨットの個人売買マーケットプレイスです。
+          イイフネ🚢.comは、プレジャーボート・漁船・ヨットの個人売買マーケットプレイスです。
           AIアシスタントが出品から契約までの面倒な作業をサポートし、海好きが
           安心して船の取引ができる場所を目指しています。
         </p>
@@ -30,7 +30,7 @@ export default function AboutPage() {
 
         <h2 className="font-display text-xl font-bold text-ocean-900 mt-10 mb-3">運営者情報</h2>
         <dl className="grid grid-cols-[8rem_1fr] gap-y-2 text-sm">
-          <dt className="text-ocean-700">サービス名</dt><dd>中古船マーケット</dd>
+          <dt className="text-ocean-700">サービス名</dt><dd>イイフネ🚢.com</dd>
           <dt className="text-ocean-700">運営開始</dt><dd>2026年</dd>
           <dt className="text-ocean-700">お問い合わせ</dt><dd><a href="/contact" className="text-coral-500 underline">お問い合わせフォーム</a></dd>
         </dl>

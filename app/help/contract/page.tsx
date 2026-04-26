@@ -6,7 +6,7 @@ export default function ContractHelpPage() {
       <h1 className="font-display text-3xl font-bold text-ocean-900 heading-wave mb-8">電子契約の使い方</h1>
       <div className="space-y-6 text-ocean-800 leading-relaxed">
         <p>
-          中古船マーケットの電子契約は、サイト内で完結する手書き署名方式です。
+          イイフネ🚢.comの電子契約は、サイト内で完結する手書き署名方式です。
           紙の契約書を郵送する手間がなく、スマートフォンからでも署名できます。
         </p>
 
