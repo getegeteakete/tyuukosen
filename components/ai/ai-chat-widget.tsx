@@ -166,15 +166,29 @@ export function AiChatWidget() {
             {/* Follow-up suggestions */}
             {!loading && msgs.length > 0 && msgs[msgs.length - 1].followUp && (
               <div className="flex flex-wrap gap-1.5 pt-1">
-                {msgs[msgs.length - 1].followUp!.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => send(s)}
-                    className="text-xs px-3 py-1 rounded-full bg-white border border-ocean-200 text-ocean-800 hover:border-coral-400"
-                  >
-                    {s}
-                  </button>
-                ))}
+                {msgs[msgs.length - 1].followUp!.map((s) => {
+                  const isLoginPrompt = s === '会員登録する' || s === 'ログイン';
+                  if (isLoginPrompt) {
+                    return (
+                      <Link
+                        key={s}
+                        href="/auth/login"
+                        className="text-xs px-3 py-1 rounded-full bg-coral-500 text-white hover:bg-coral-600"
+                      >
+                        {s}
+                      </Link>
+                    );
+                  }
+                  return (
+                    <button
+                      key={s}
+                      onClick={() => send(s)}
+                      className="text-xs px-3 py-1 rounded-full bg-white border border-ocean-200 text-ocean-800 hover:border-coral-400"
+                    >
+                      {s}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>
