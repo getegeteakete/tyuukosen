@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { formatYen, sanitizeHtml } from '@/lib/utils';
 import { MapPin, Calendar, Ruler, Cpu, MessageCircle, Video, Shield, Heart } from 'lucide-react';
 import { ContactCta } from '@/components/marketplace/contact-cta';
@@ -8,23 +8,29 @@ import { ContactCta } from '@/components/marketplace/contact-cta';
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  if (!isSupabaseConfigured()) return {};
   const { id } = await params;
-  const supabase = await createClient();
-  const { data: boat } = await supabase
-    .from('boats')
-    .select('title,brand,year,location_pref,cover_image_url,description,ai_seo_keywords')
-    .eq('id', id)
-    .single();
-  if (!boat) return {};
-  return {
-    title: `${boat.title} | 中古船`,
-    description: (boat.description ?? '').slice(0, 120),
-    keywords: boat.ai_seo_keywords,
-    openGraph: { images: boat.cover_image_url ? [boat.cover_image_url] : [] },
-  };
+  try {
+    const supabase = await createClient();
+    const { data: boat } = await supabase
+      .from('boats')
+      .select('title,brand,year,location_pref,cover_image_url,description,ai_seo_keywords')
+      .eq('id', id)
+      .single();
+    if (!boat) return {};
+    return {
+      title: `${boat.title} | 中古船`,
+      description: (boat.description ?? '').slice(0, 120),
+      keywords: boat.ai_seo_keywords,
+      openGraph: { images: boat.cover_image_url ? [boat.cover_image_url] : [] },
+    };
+  } catch {
+    return {};
+  }
 }
 
 export default async function BoatDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  if (!isSupabaseConfigured()) notFound();
   const { id } = await params;
   const supabase = await createClient();
 

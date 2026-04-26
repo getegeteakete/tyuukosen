@@ -1,23 +1,34 @@
 import Link from 'next/link';
-import { Search, Anchor, Wrench, FileSignature, Video, MessageCircle, Sparkles } from 'lucide-react';
+import { Search, Anchor, Wrench, FileSignature, Video, MessageCircle, Sparkles, AlertCircle } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { BoatCard } from '@/components/marketplace/boat-card';
 import { CategoryTile } from '@/components/marketplace/category-tile';
 
 export const revalidate = 300; // 5分キャッシュ
 
-export default async function HomePage() {
-  const supabase = await createClient();
+async function fetchFeatured() {
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from('boats')
+      .select('id,title,brand,year,length_ft,price,location_pref,cover_image_url,is_premium')
+      .eq('status', 'published')
+      .order('published_at', { ascending: false })
+      .limit(8);
+    return { boats: data ?? [], configured: true as const };
+  } catch (e) {
+    return { boats: [] as any[], configured: false as const, error: String((e as Error).message ?? e) };
+  }
+}
 
-  const { data: featured } = await supabase
-    .from('boats')
-    .select('id,title,brand,year,length_ft,price,location_pref,cover_image_url,is_premium')
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
-    .limit(8);
+export default async function HomePage() {
+  const { boats: featured, configured } = await fetchFeatured();
 
   return (
     <>
+      {/* ============== Setup Notice (未設定時のみ) ============== */}
+      {!configured && <SetupNotice />}
+
       {/* ============== Hero ============== */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
@@ -231,6 +242,26 @@ function EmptyFeatured() {
       <Link href="/dashboard/boats/new" className="inline-block mt-4 px-5 py-2 rounded-full bg-coral-500 text-white text-sm">
         出品する
       </Link>
+    </div>
+  );
+}
+
+function SetupNotice() {
+  return (
+    <div className="bg-amber-50 border-b border-amber-200">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-start gap-3 text-sm">
+        <AlertCircle className="text-amber-600 mt-0.5 shrink-0" size={18} />
+        <div>
+          <p className="font-medium text-amber-900">セットアップ未完了</p>
+          <p className="text-amber-800 text-xs mt-0.5">
+            Supabaseの環境変数が未設定のため、データベース接続なしのプレビュー表示になっています。
+            <a href="https://github.com/getegeteakete/tyuukosen#セットアップ手順" target="_blank" rel="noopener noreferrer" className="underline ml-1">
+              README手順
+            </a>
+            に従って Vercel に環境変数を設定してください。
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

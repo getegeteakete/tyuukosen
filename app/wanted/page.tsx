@@ -6,13 +6,19 @@ import { Plus, MapPin, Calendar, Wallet } from 'lucide-react';
 export const dynamic = 'force-dynamic';
 
 export default async function WantedPage() {
-  const supabase = await createClient();
-  const { data: posts } = await supabase
-    .from('wanted_posts')
-    .select('id,title,body,budget_min,budget_max,size_min_ft,size_max_ft,preferred_period,preferred_pref,created_at')
-    .eq('status', 'open')
-    .order('created_at', { ascending: false })
-    .limit(40);
+  let posts: any[] = [];
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from('wanted_posts')
+      .select('id,title,body,budget_min,budget_max,size_min_ft,size_max_ft,preferred_period,preferred_pref,created_at')
+      .eq('status', 'open')
+      .order('created_at', { ascending: false })
+      .limit(40);
+    posts = data ?? [];
+  } catch {
+    posts = [];
+  }
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">

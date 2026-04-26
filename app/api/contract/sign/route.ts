@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: Request) {
   const { token, contractId, signature } = await req.json();
   if (!token || !contractId || !signature) {

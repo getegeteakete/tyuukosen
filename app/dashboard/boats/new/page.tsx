@@ -1,10 +1,11 @@
 import { redirect, notFound } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { BoatForm } from '@/components/marketplace/boat-form';
 
 export const dynamic = 'force-dynamic';
 
 export default async function NewBoatPage() {
+  if (!isSupabaseConfigured()) redirect('/');
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/auth/login?redirect=/dashboard/boats/new');

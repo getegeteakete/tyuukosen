@@ -20,31 +20,41 @@ export default async function BoatsPage({
   searchParams: Promise<SearchParams>;
 }) {
   const sp = await searchParams;
-  const supabase = await createClient();
+  let boats: any[] = [];
+  let total = 0;
 
-  const page = Math.max(1, parseInt(sp.page ?? '1', 10));
-  const perPage = 16;
-  const from = (page - 1) * perPage;
-  const to = from + perPage - 1;
+  try {
+    const supabase = await createClient();
 
-  let q = supabase
-    .from('boats')
-    .select('id,title,brand,year,length_ft,price,location_pref,cover_image_url,is_premium', { count: 'exact' })
-    .eq('status', 'published')
-    .order('is_premium', { ascending: false })
-    .order('published_at', { ascending: false });
+    const page = Math.max(1, parseInt(sp.page ?? '1', 10));
+    const perPage = 16;
+    const from = (page - 1) * perPage;
+    const to = from + perPage - 1;
 
-  if (sp.q) {
-    // tsvector検索でも良いが、ここは簡易LIKE
-    q = q.or(`title.ilike.%${sp.q}%,brand.ilike.%${sp.q}%,description.ilike.%${sp.q}%`);
+    let q = supabase
+      .from('boats')
+      .select('id,title,brand,year,length_ft,price,location_pref,cover_image_url,is_premium', { count: 'exact' })
+      .eq('status', 'published')
+      .order('is_premium', { ascending: false })
+      .order('published_at', { ascending: false });
+
+    if (sp.q) {
+      q = q.or(`title.ilike.%${sp.q}%,brand.ilike.%${sp.q}%,description.ilike.%${sp.q}%`);
+    }
+    if (sp.pref) q = q.eq('location_pref', sp.pref);
+    if (sp.min) q = q.gte('price', parseInt(sp.min, 10));
+    if (sp.max) q = q.lte('price', parseInt(sp.max, 10));
+
+    const { data, count } = await q.range(from, to);
+    boats = data ?? [];
+    total = count ?? 0;
+  } catch {
+    boats = [];
+    total = 0;
   }
-  if (sp.pref) q = q.eq('location_pref', sp.pref);
-  if (sp.min) q = q.gte('price', parseInt(sp.min, 10));
-  if (sp.max) q = q.lte('price', parseInt(sp.max, 10));
 
-  const { data: boats, count } = await q.range(from, to);
-  const total = count ?? 0;
-  const lastPage = Math.max(1, Math.ceil(total / perPage));
+  const pageNum = Math.max(1, parseInt(sp.page ?? '1', 10));
+  const lastPage = Math.max(1, Math.ceil(total / 16));
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -96,7 +106,7 @@ export default async function BoatsPage({
                     key={p}
                     href={`/boats?${params}`}
                     className={`w-9 h-9 rounded-md flex items-center justify-center text-sm ${
-                      p === page ? 'bg-ocean-900 text-white' : 'border border-ocean-200 hover:border-coral-300'
+                      p === pageNum ? 'bg-ocean-900 text-white' : 'border border-ocean-200 hover:border-coral-300'
                     }`}
                   >
                     {p}

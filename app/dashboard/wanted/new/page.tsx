@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { WantedForm } from '@/components/marketplace/wanted-form';
 
 export default async function NewWantedPage() {
+  if (!isSupabaseConfigured()) redirect('/');
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/auth/login?redirect=/dashboard/wanted/new');

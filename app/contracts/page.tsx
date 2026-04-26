@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { formatDate } from '@/lib/utils';
 import { ContractCreateButton } from '@/components/contract/contract-create-button';
 import { CopyLinkInner } from '@/components/contract/copy-link';
@@ -8,6 +8,7 @@ import { FileSignature } from 'lucide-react';
 export const dynamic = 'force-dynamic';
 
 export default async function ContractsPage() {
+  if (!isSupabaseConfigured()) redirect('/');
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/auth/login?redirect=/contracts');

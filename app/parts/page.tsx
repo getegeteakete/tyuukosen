@@ -6,13 +6,19 @@ import { Wrench, Plus } from 'lucide-react';
 export const dynamic = 'force-dynamic';
 
 export default async function PartsPage() {
-  const supabase = await createClient();
-  const { data: parts } = await supabase
-    .from('parts_listings')
-    .select('id,title,category,condition,price,images,created_at')
-    .eq('status', 'published')
-    .order('created_at', { ascending: false })
-    .limit(48);
+  let parts: any[] = [];
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from('parts_listings')
+      .select('id,title,category,condition,price,images,created_at')
+      .eq('status', 'published')
+      .order('created_at', { ascending: false })
+      .limit(48);
+    parts = data ?? [];
+  } catch {
+    parts = [];
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">

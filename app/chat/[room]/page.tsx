@@ -1,11 +1,12 @@
 import { redirect, notFound } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { ChatThread } from '@/components/chat/chat-thread';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
 export default async function ChatRoomPage({ params }: { params: Promise<{ room: string }> }) {
+  if (!isSupabaseConfigured()) redirect('/');
   const { room } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

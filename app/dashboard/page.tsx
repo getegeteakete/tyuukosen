@@ -1,12 +1,31 @@
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { formatYen, formatDate } from '@/lib/utils';
-import { Anchor, MessageSquare, FileSignature, Plus, Star, Eye } from 'lucide-react';
+import { Anchor, FileSignature, Plus, Star, AlertCircle } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
+  if (!isSupabaseConfigured()) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-20 text-center">
+        <AlertCircle className="mx-auto text-amber-500 mb-3" size={36} />
+        <h1 className="font-display text-2xl font-bold text-ocean-900">セットアップ未完了</h1>
+        <p className="text-sm text-ocean-700 mt-3">
+          ダッシュボードを使うにはSupabaseの環境変数を設定する必要があります。
+        </p>
+        <a
+          href="https://github.com/getegeteakete/tyuukosen#セットアップ手順"
+          target="_blank" rel="noopener noreferrer"
+          className="inline-block mt-6 px-6 py-2.5 rounded-full bg-coral-500 text-white text-sm"
+        >
+          セットアップ手順を見る
+        </a>
+      </div>
+    );
+  }
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/auth/login?redirect=/dashboard');

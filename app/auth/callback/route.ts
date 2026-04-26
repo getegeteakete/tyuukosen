@@ -1,10 +1,16 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const code = url.searchParams.get('code');
   const redirect = url.searchParams.get('redirect') ?? '/dashboard';
+
+  if (!isSupabaseConfigured()) {
+    return NextResponse.redirect(new URL('/', url.origin));
+  }
 
   if (code) {
     const supabase = await createClient();
