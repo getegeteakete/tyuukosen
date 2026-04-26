@@ -23,14 +23,10 @@ export default async function PartsPage() {
   return (
     <>
       {/* ============== Hero ============== */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden isolate min-h-[500px] md:min-h-[560px]">
         <div
-          className="absolute inset-0 -z-10 bg-ocean-900"
-          style={{
-            backgroundImage: 'url(/hero/parts-poster.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="absolute inset-0 z-0 bg-ocean-900 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/hero/parts-poster.jpg)' }}
         >
           <video
             className="absolute inset-0 w-full h-full object-cover"
@@ -46,18 +42,19 @@ export default async function PartsPage() {
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-ocean-900/65 via-ocean-900/45 to-sand-50/95" />
           <div className="absolute inset-0 bg-gradient-to-r from-ocean-900/20 via-transparent to-ocean-900/20" />
-          <svg
-            className="absolute bottom-0 left-0 w-full text-sand-50"
-            viewBox="0 0 1440 80" preserveAspectRatio="none"
-          >
-            <path
-              d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-              fill="currentColor"
-            />
-          </svg>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 pt-16 pb-28 md:pt-20 md:pb-32 text-center">
+        <svg
+          className="absolute bottom-0 left-0 w-full text-sand-50 z-[5] pointer-events-none"
+          viewBox="0 0 1440 80" preserveAspectRatio="none"
+        >
+          <path
+            d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+            fill="currentColor"
+          />
+        </svg>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 pt-16 pb-28 md:pt-20 md:pb-32 text-center">
           <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 backdrop-blur text-coral-600 text-xs font-medium mb-5 shadow-sm">
             <Wrench size={14} /> 海のプロが集うパーツ市場
           </p>

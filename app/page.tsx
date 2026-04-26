@@ -30,15 +30,11 @@ export default async function HomePage() {
       {!configured && <SetupNotice />}
 
       {/* ============== Hero ============== */}
-      <section className="relative overflow-hidden">
-        {/* 背景: 必ず表示されるポスター画像 + 上に動画レイヤー */}
+      <section className="relative overflow-hidden isolate min-h-[600px] md:min-h-[680px]">
+        {/* 背景: ポスター画像 + 動画 */}
         <div
-          className="absolute inset-0 -z-10 bg-ocean-900"
-          style={{
-            backgroundImage: 'url(/hero/hero-poster.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="absolute inset-0 z-0 bg-ocean-900 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/hero/hero-poster.jpg)' }}
         >
           <video
             className="absolute inset-0 w-full h-full object-cover"
@@ -55,19 +51,21 @@ export default async function HomePage() {
           {/* 文字の可読性確保のためのグラデーションオーバーレイ */}
           <div className="absolute inset-0 bg-gradient-to-b from-ocean-900/65 via-ocean-900/45 to-sand-50/95" />
           <div className="absolute inset-0 bg-gradient-to-r from-ocean-900/20 via-transparent to-ocean-900/20" />
-          {/* 下端の波 */}
-          <svg
-            className="absolute bottom-0 left-0 w-full text-sand-50"
-            viewBox="0 0 1440 80" preserveAspectRatio="none"
-          >
-            <path
-              d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-              fill="currentColor"
-            />
-          </svg>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 pt-20 pb-32 md:pt-24 md:pb-36 text-center">
+        {/* 下端の波（背景より上、コンテンツより下） */}
+        <svg
+          className="absolute bottom-0 left-0 w-full text-sand-50 z-[5] pointer-events-none"
+          viewBox="0 0 1440 80" preserveAspectRatio="none"
+        >
+          <path
+            d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+            fill="currentColor"
+          />
+        </svg>
+
+        {/* コンテンツ（最前面） */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 pt-20 pb-32 md:pt-24 md:pb-36 text-center">
           <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 backdrop-blur text-coral-600 text-xs font-medium mb-5 shadow-sm">
             <Sparkles size={14} /> AIが出品も検索も全部サポート
           </p>
