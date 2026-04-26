@@ -31,22 +31,30 @@ export default async function HomePage() {
 
       {/* ============== Hero ============== */}
       <section className="relative overflow-hidden">
-        {/* 動画背景 */}
-        <div className="absolute inset-0 -z-10">
+        {/* 背景: 必ず表示されるポスター画像 + 上に動画レイヤー */}
+        <div
+          className="absolute inset-0 -z-10 bg-ocean-900"
+          style={{
+            backgroundImage: 'url(/hero/hero-poster.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
           <video
             className="absolute inset-0 w-full h-full object-cover"
-            src="/hero/hero.mp4"
             poster="/hero/hero-poster.jpg"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             aria-hidden="true"
-          />
+          >
+            <source src="/hero/hero.mp4" type="video/mp4" />
+          </video>
           {/* 文字の可読性確保のためのグラデーションオーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-b from-ocean-900/55 via-ocean-900/40 to-sand-50/95" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ocean-900/30 via-transparent to-ocean-900/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-ocean-900/65 via-ocean-900/45 to-sand-50/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ocean-900/20 via-transparent to-ocean-900/20" />
           {/* 下端の波 */}
           <svg
             className="absolute bottom-0 left-0 w-full text-sand-50"
