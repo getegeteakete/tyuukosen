@@ -164,6 +164,39 @@ export default async function HomePage() {
         <LineCtaHero />
       </section>
 
+      {/* ============== 売買メリット ============== */}
+      <section className="max-w-6xl mx-auto px-4 mt-12 md:mt-16">
+        <div className="text-center mb-7 md:mb-10">
+          <p className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-coral-50 text-coral-600 text-[11px] md:text-xs font-medium mb-3">
+            <Star size={12} /> 安心して使える6つの理由
+          </p>
+          <h2 className="font-display text-xl md:text-2xl font-bold text-ocean-900">
+            イイフネ🚢.comが選ばれる<span className="block sm:inline">売買メリット</span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          <Merit emoji="📝" title="楽々電子契約書付き" body="紙の契約書は不要。スマホやPCから手書き署名できる電子契約システムを標準装備。" />
+          <Merit emoji="🚫" title="仲介手数料なし" body="売買代金から手数料は一切引きません。売主の手取り、買主の支払いがそのまま。" />
+          <Merit emoji="💰" title="掲載費用のみ" body="月額3,000円の出品プランだけ。売れた・売れない関わらず、追加料金は発生しません。" />
+          <Merit emoji="🚢" title="該当船が出たらLINE通知" body="登録後、公式LINEに条件を送れば、希望の船が出品されると即座にAIが通知。" />
+          <Merit emoji="💬" title="船登録もLINEで完結" body="公式LINEに「2018年式のヤマハで…」と話しかけるだけで、AIが出品ページを作成。" />
+          <Merit emoji="🎉" title="買い手成立もLINE通知" body="出品した船に問い合わせや見学希望が入ったら、すぐにLINEで知らせます。" />
+        </div>
+
+        <div className="mt-6 md:mt-8 text-center">
+          <Link
+            href="/line"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#06C755] hover:bg-[#04a648] text-white font-bold text-sm shadow"
+          >
+            <span className="w-5 h-5 rounded bg-white flex items-center justify-center">
+              <span className="font-display font-extrabold text-[#06C755] text-[8px] leading-none">L</span>
+            </span>
+            まずはLINE登録から <ChevronRight size={14} />
+          </Link>
+        </div>
+      </section>
+
       {/* ============== 機能ハイライト ============== */}
       <section className="max-w-6xl mx-auto px-4 mt-16 md:mt-24 grid md:grid-cols-2 gap-4 md:gap-6">
         <FeatureBlock
@@ -203,6 +236,16 @@ function CategoryTile({ href, icon, label, sub }: { href: string; icon: React.Re
         <p className="text-[10px] md:text-[11px] text-ocean-700 mt-0.5 truncate">{sub}</p>
       </div>
     </Link>
+  );
+}
+
+function Merit({ emoji, title, body }: { emoji: string; title: string; body: string }) {
+  return (
+    <div className="card-soft p-4 md:p-5 bg-white">
+      <div className="text-2xl md:text-3xl mb-2">{emoji}</div>
+      <h3 className="font-bold text-ocean-900 text-[13px] md:text-base leading-tight">{title}</h3>
+      <p className="text-[11px] md:text-sm text-ocean-700 mt-1.5 md:mt-2 leading-relaxed">{body}</p>
+    </div>
   );
 }
 
