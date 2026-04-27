@@ -177,11 +177,11 @@ export default async function HomePage() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           <Merit emoji="📝" title="楽々電子契約書付き" body="紙の契約書は不要。スマホやPCから手書き署名できる電子契約システムを標準装備。" />
-          <Merit emoji="🚫" title="仲介手数料なし" body="売買代金から手数料は一切引きません。売主の手取り、買主の支払いがそのまま。" />
-          <Merit emoji="💰" title="掲載費用のみ" body="月額3,000円の出品プランだけ。売れた・売れない関わらず、追加料金は発生しません。" />
+          <Merit emoji="🛡️" title="エスクロー安心決済" body="代金は当社で一時お預かり。AIが瑕疵チェックし、双方同意後に売り手へお支払い。" />
+          <Merit emoji="📣" title="掲載費に宣伝込み" body="¥30,000の初期費用のみで1年間最大20艇まで掲載可能。AI記事＆SNS投稿で自動宣伝。" />
           <Merit emoji="🚢" title="該当船が出たらLINE通知" body="登録後、公式LINEに条件を送れば、希望の船が出品されると即座にAIが通知。" />
           <Merit emoji="💬" title="船登録もLINEで完結" body="公式LINEに「2018年式のヤマハで…」と話しかけるだけで、AIが出品ページを作成。" />
-          <Merit emoji="🎉" title="買い手成立もLINE通知" body="出品した船に問い合わせや見学希望が入ったら、すぐにLINEで知らせます。" />
+          <Merit emoji="💰" title="成約時のみ手数料5%" body="売却が成立しなければ手数料は0円。買い手は完全無料、売り手も成立時のみ。" />
         </div>
 
         <div className="mt-6 md:mt-8 text-center">
@@ -206,8 +206,8 @@ export default async function HomePage() {
           tone="ocean"
         />
         <FeatureBlock
-          title="売り手は最大10隻まで掲載"
-          body="月額¥3,000 / 年額¥30,000で5隻まで。+¥10,000で10隻ずつ追加可能。電子契約・身分証チェック・ZOOM見学予約すべて込み。"
+          title="売り手は最大20艇まで掲載"
+          body="初期費用¥30,000(税抜)で1年間掲載し放題。SNS自動投稿・AI記事生成の宣伝も含まれて追加料金なし。売買成立時のみ売却額の5%が成約手数料。電子契約・身分証チェック・ZOOM見学すべてコミです。"
           cta={{ label: '出品プランを見る', href: '/pricing' }}
           tone="coral"
         />

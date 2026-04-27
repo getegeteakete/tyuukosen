@@ -17,7 +17,13 @@ export default async function NewBoatPage() {
     .eq('user_id', user.id)
     .single();
 
-  const baseSlots = ['seller_monthly','seller_yearly','seller_premium'].includes(profile?.plan ?? '') ? 5 : 0;
+  // 新プラン: seller_yearly = 20艇 / 旧プランは互換性のため5艇枠を維持
+  const PLAN_SLOTS: Record<string, number> = {
+    seller_yearly: 20,
+    seller_monthly: 5,
+    seller_premium: 20,
+  };
+  const baseSlots = PLAN_SLOTS[profile?.plan ?? ''] ?? 0;
   const totalSlots = baseSlots + (profile?.boat_slot_extra ?? 0);
 
   const { count } = await supabase
@@ -33,7 +39,9 @@ export default async function NewBoatPage() {
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
         <h1 className="font-display text-2xl font-bold text-ocean-900">出品プランへの加入が必要です</h1>
         <p className="text-sm text-ocean-700 mt-3">
-          月額¥3,000 または 年額¥30,000 で5隻まで掲載できます。
+          初期費用 ¥30,000(税抜) で1年間最大20艇まで掲載できます。
+          <br />
+          売買成立時のみ売却額の5%が成約手数料として発生します。
         </p>
         <a href="/pricing" className="inline-block mt-6 px-6 py-3 rounded-full bg-coral-500 text-white text-sm font-medium">
           出品プランを見る
@@ -47,10 +55,10 @@ export default async function NewBoatPage() {
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
         <h1 className="font-display text-2xl font-bold text-ocean-900">出品枠が上限です</h1>
         <p className="text-sm text-ocean-700 mt-3">
-          現在 {totalSlots} 隻まで掲載可能です。10隻ずつ枠を追加できます（+¥10,000）。
+          現在 {totalSlots} 艇まで掲載可能です。プランの更新または追加枠の購入をご検討ください。
         </p>
         <a href="/pricing" className="inline-block mt-6 px-6 py-3 rounded-full bg-coral-500 text-white text-sm font-medium">
-          追加枠を購入
+          プランを見る
         </a>
       </div>
     );

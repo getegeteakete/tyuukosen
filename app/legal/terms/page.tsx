@@ -19,11 +19,15 @@ export default function TermsPage() {
 
         <h2 className="font-display text-xl font-bold text-ocean-900 mt-8">第3条（出品プラン・料金）</h2>
         <ul className="list-disc pl-5 space-y-1">
-          <li>売り手向けプラン: 月額¥3,000 または 年額¥30,000（5隻まで掲載）</li>
-          <li>追加掲載枠: ¥10,000で10隻ずつ追加</li>
+          <li>売り手向け年間掲載プラン: ¥30,000/年（税抜・最大20艇まで掲載可能）</li>
+          <li>成約手数料: 売買成立時のみ、売却額の5%を売り手から徴収</li>
           <li>補助金・助成金サポートオプション: 月額¥10,000</li>
           <li>買い手の利用: 完全無料</li>
+          <li>初期掲載費は売買が成立しない場合も返金対象外とします</li>
         </ul>
+
+        <h2 className="font-display text-xl font-bold text-ocean-900 mt-8">第3条の2（エスクロー決済）</h2>
+        <p>売買代金は当社が一時お預かりします。AIによる瑕疵チェックを経て、売り手・買い手の双方が引渡内容に同意した後、売却額から成約手数料5%を差引き、売り手指定の口座にお振込いたします。AI瑕疵チェックでお互いに合意できない場合は、双方協議のうえ返金または条件再交渉を行います。</p>
 
         <h2 className="font-display text-xl font-bold text-ocean-900 mt-8">第4条（禁止事項）</h2>
         <p>利用者は、以下の行為をしてはなりません:</p>
